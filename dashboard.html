@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة التحكم</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <h1>لوحة التحكم</h1>
+</header>
+
+<main>
+
+  <section class="hero-box" style="padding:20px 16px; margin-bottom:16px; text-align:right;">
+    <h2 style="margin:0 0 8px; font-size:1.1rem;">إدارة صفحاتك</h2>
+    <p style="margin:0; font-size:12px;">إنشاء، تعديل، رفع صور متعددة، وربط بوت خاص بكل صفحة.</p>
+
+    <div class="actions" style="margin-top:12px; gap:8px;">
+      <button id="addPageBtn" type="button" style="min-height:34px; padding:6px 10px; font-size:11px;">
+        ➕ صفحة جديدة
+      </button>
+      <button id="logoutBtn" type="button" class="secondary" style="min-height:34px; padding:6px 10px; font-size:11px;">
+        تسجيل الخروج
+      </button>
+    </div>
+  </section>
+
+  <section class="grid grid-3" style="margin-bottom:12px; gap:8px;">
+    <div class="card" style="padding:10px;">
+      <div class="badge" style="margin-bottom:6px;">الصفحات</div>
+      <h3 style="margin:0 0 4px; font-size:12px;">الإجمالي</h3>
+      <p id="totalPagesStat" style="margin:0; font-size:1.2rem; font-weight:800;">0</p>
+    </div>
+
+    <div class="card" style="padding:10px;">
+      <div class="badge" style="margin-bottom:6px;">النشطة</div>
+      <h3 style="margin:0 0 4px; font-size:12px;">الفعالة</h3>
+      <p id="activePagesStat" style="margin:0; font-size:1.2rem; font-weight:800;">0</p>
+    </div>
+
+    <div class="card" style="padding:10px;">
+      <div class="badge" style="margin-bottom:6px;">الحالة</div>
+      <h3 style="margin:0 0 4px; font-size:12px;">النظام</h3>
+      <p id="dashboardStatusStat" style="margin:0; font-size:11px; color:var(--muted); font-weight:700;">
+        جاهز
+      </p>
+    </div>
+  </section>
+
+  <section
+    id="addFormWrapper"
+    class="card"
+    style="display:none; margin-bottom:12px; padding:10px;"
+  >
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+      <div>
+        <h2 id="formTitle" style="margin:0 0 4px; font-size:0.95rem;">إنشاء صفحة</h2>
+        <p style="margin:0; color:var(--muted); font-size:11px;">املأ الحقول وارفع الصور واربط البوت.</p>
+      </div>
+      <span class="badge" id="formModeBadge">إضافة</span>
+    </div>
+
+    <form id="addForm" style="max-width:100%; margin:0; padding:0; border:none; box-shadow:none; background:transparent; gap:8px;">
+      <div id="formMessage" class="error" style="display:none;"></div>
+
+      <input type="hidden" id="editingId" />
+
+      <input type="text" id="title" placeholder="العنوان" required />
+      <textarea id="description" placeholder="الوصف" required></textarea>
+
+      <div class="grid grid-2" style="gap:8px;">
+        <input type="number" id="price" placeholder="السعر" min="0" step="0.01" required />
+        <input type="text" id="slug" placeholder="slug" required />
+      </div>
+
+      <div class="grid grid-2" style="gap:8px;">
+        <input type="number" id="productCost" placeholder="سعر الجملة" min="0" step="0.01" />
+        <input type="number" id="deliveryCost" placeholder="سعر التوصيل" min="0" step="0.01" />
+      </div>
+
+      <select id="template" required>
+        <option value="classic">Classic - بسيط</option>
+        <option value="compact">Compact - مضغوط</option>
+        <option value="premium">Premium - أنيق</option>
+      </select>
+
+      <input type="text" id="telegramToken" placeholder="Bot Token" />
+      <input type="text" id="telegramChatId" placeholder="Chat ID" />
+
+      <div class="actions" style="gap:6px;">
+        <button type="button" id="verifyBotBtn" class="secondary" style="min-height:32px; padding:6px 10px; font-size:11px;">
+          فحص البوت
+        </button>
+        <button type="button" id="fetchChatIdBtn" class="secondary" style="min-height:32px; padding:6px 10px; font-size:11px;">
+          جلب Chat ID
+        </button>
+      </div>
+
+      <input type="file" id="imageFiles" accept="image/*" multiple />
+
+      <div id="imagePreviewWrap" style="display:none;">
+        <p style="margin:0 0 6px; font-size:11px; color:var(--muted);">معاينة الصور</p>
+        <div id="imagePreviewGrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px;"></div>
+      </div>
+
+      <div class="actions" style="gap:6px; margin-top:2px;">
+        <button type="submit" id="saveBtn" style="min-height:32px; padding:6px 10px; font-size:11px;">حفظ</button>
+        <button type="button" id="cancelAddBtn" class="secondary" style="min-height:32px; padding:6px 10px; font-size:11px;">إغلاق</button>
+      </div>
+    </form>
+  </section>
+
+  <section style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+    <div>
+      <h2 class="section-title" style="margin:0 0 4px; font-size:0.95rem;">صفحاتي</h2>
+      <p style="margin:0; color:var(--muted); font-size:11px;">عرض سريع ومضغوط.</p>
+    </div>
+
+    <span class="badge" id="pagesCountBadge">0 صفحة</span>
+  </section>
+
+  <div id="pagesMessage" style="display:none;"></div>
+
+  <section id="pagesContainer" class="page-list" style="gap:6px;">
+    <div class="empty-state" style="padding:12px 8px;">جاري التحميل...</div>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إنشاء حساب</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+<header>
+  <h1>إنشاء حساب جديد</h1>
+</header>
+
+<main>
+
+  <form id="registerForm">
+
+    <div id="message" class="error"></div>
+
+    <input
+      type="text"
+      id="fullName"
+      placeholder="الاسم الكامل"
+      required
+    />
+
+    <input
+      type="email"
+      id="email"
+      placeholder="البريد الإلكتروني"
+      required
+    />
+
+    <input
+      type="password"
+      id="password"
+      placeholder="كلمة المرور"
+      required
+    />
+
+    <button type="submit">تسجيل</button>
+
+  </form>
+
+  <a class="btn" href="login.html">لديك حساب؟ تسجيل الدخول</a>
+
+</main>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Config -->
+<script src="js/supabase.js"></script>
+
+<!-- Auth -->
+<script src="js/auth.js"></script>
+
+</body>
+</html>

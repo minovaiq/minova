@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>صفحة المنتج</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="landing-page">
+
+  <div class="top-offer-bar">
+    🔥 خصم اليوم + توصيل مجاني + الدفع عند الاستلام
+  </div>
+
+  <header class="landing-header">
+    <h1 id="pageTitle">جاري التحميل...</h1>
+  </header>
+
+  <main class="landing-main">
+    <section id="landingContainer">
+      <div class="empty-state">جاري تحميل الصفحة...</div>
+    </section>
+
+    <section class="trust-strip">
+      <span class="trust-badge">🚚 توصيل سريع</span>
+      <span class="trust-badge">💰 الدفع عند الاستلام</span>
+      <span class="trust-badge">🔒 ضمان</span>
+    </section>
+
+    <section id="orderSection" class="order-section">
+      <div class="order-section-header">
+        <h2>اطلب الآن قبل نفاذ الكمية 🔥</h2>
+        <p>املأ المعلومات وسيتم التواصل معك لتأكيد الطلب</p>
+      </div>
+
+      <div class="urgency-note">
+        ⏳ الكمية محدودة، يرجى إكمال الطلب بسرعة
+      </div>
+
+      <form id="orderForm" class="landing-order-form" novalidate>
+        <div id="message" class="form-message" style="display:none;"></div>
+
+        <input
+          type="text"
+          id="name"
+          placeholder="الاسم الكامل"
+          autocomplete="name"
+          required
+        />
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="رقم الهاتف"
+          inputmode="tel"
+          autocomplete="tel"
+          required
+        />
+
+        <input
+          type="text"
+          id="province"
+          placeholder="المحافظة"
+          required
+        />
+
+        <input
+          type="text"
+          id="district"
+          placeholder="القضاء أو الحي"
+          required
+        />
+
+        <input
+          type="text"
+          id="area"
+          placeholder="المنطقة بالتفصيل"
+          required
+        />
+
+        <button id="submitOrderBtn" type="submit" class="submit-order-btn">
+          تأكيد الطلب
+        </button>
+      </form>
+    </section>
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/landing.js"></script>
+</body>
+</html>
