@@ -1,0 +1,4 @@
+const SUPABASE_URL = "https://gqpbbtvcgeotcavretsl.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxcGJidHZjZ2VvdGNhdnJldHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3ODg2NjgsImV4cCI6MjA5MjM2NDY2OH0.3jUa4So9bKtFp9rHJ8YKfKl8P-ACbgEEAXKNwpWOqxU";
+
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
